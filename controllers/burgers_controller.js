@@ -7,7 +7,15 @@ var router = express.Router();
 var burger = require("../models/burger.js")
 
 router.get("/", function (req, res) {
-    burger.selectAll
+    burger.all(function (data) {
+        console.log(data)
+        var burgerObject = {
+            burgers: data
+        }
+        res.render("index", burgerObject)
+
+    })
+
 });
 
 router.post("/api/burger", function (req, res) {
