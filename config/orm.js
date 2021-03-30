@@ -8,13 +8,13 @@ var connection = require("./connection.js")
 // * `updateOne()`
 
 var orm = {
-    selectAll: function () {
-        var queryString = "SELECT * FROM burgers";
+    selectAll: function (tableInput, cb) {
+        var queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, function (err, res) {
             if (err) {
                 throw err;
             }
-            res.render("main", { burgers: data })
+            cb(res)
         })
     },
 
