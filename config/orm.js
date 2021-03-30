@@ -1,4 +1,5 @@
 //require connection.js
+const { connect } = require("./connection.js");
 var connection = require("./connection.js")
 // In the `orm.js` file, create the methods that will execute the necessary MySQL commands in the controllers. These are the methods you will need to use in order to retrieve and store data in your database.
 
@@ -7,7 +8,15 @@ var connection = require("./connection.js")
 // * `updateOne()`
 
 var orm = {
-    selectAll: function () { },
+    selectAll: function () {
+        var queryString = "SELECT * FROM burgers";
+        connection.query(queryString, function (err, res) {
+            if (err) {
+                throw err;
+            }
+            res.render("main", { burgers: data })
+        })
+    },
 
     insertOne: function () { },
 
