@@ -1,10 +1,5 @@
 //require connection.js
-var connection = require("./connection.js")
-// In the `orm.js` file, create the methods that will execute the necessary MySQL commands in the controllers. These are the methods you will need to use in order to retrieve and store data in your database.
-
-// * `selectAll()`
-// * `insertOne()`
-// * `updateOne()`
+var connection = require("./connection.js");
 
 function printQuestionMarks(num) {
     var arr = [];
@@ -12,9 +7,8 @@ function printQuestionMarks(num) {
     for (var i = 0; i < num; i++) {
         arr.push("?");
     }
-
     return arr.toString();
-}
+};
 
 function objToSql(ob) {
     var arr = [];
@@ -28,15 +22,12 @@ function objToSql(ob) {
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
             }
-            // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
-            // e.g. {sleepy: true} => ["sleepy=true"]
             arr.push(key + "=" + value);
-        }
-    }
-
+        };
+    };
     // translate array of strings to a single comma-separated string
     return arr.toString();
-}
+};
 
 var orm = {
     selectAll: function (tableInput, cb) {
@@ -45,8 +36,8 @@ var orm = {
             if (err) {
                 throw err;
             }
-            cb(res)
-        })
+            cb(res);
+        });
     },
 
     insertOne: function (table, cols, vals, cb) {
@@ -58,17 +49,15 @@ var orm = {
         queryString += printQuestionMarks(vals.length);
         queryString += ") ";
 
-        console.log(queryString)
         connection.query(queryString, vals, function (err, result) {
             if (err) {
                 throw err;
             }
-            cb(result)
-        })
+            cb(result);
+        });
     },
 
     updateOne: function (table, objColVals, condition, cb) {
-        console.log(condition)
         var queryString = "UPDATE " + table;
         queryString += " SET ";
         queryString += objToSql(objColVals);
@@ -80,10 +69,9 @@ var orm = {
                 throw err;
             }
             cb(result);
-        })
-
+        });
     },
-}
+};
 
 // * Export the ORM object in `module.exports`.
 module.exports = orm;

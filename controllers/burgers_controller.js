@@ -4,36 +4,29 @@ var express = require("express");
 var router = express.Router();
 
 //importing burger model
-var burger = require("../models/burger.js")
+var burger = require("../models/burger.js");
 
 router.get("/", function (req, res) {
     burger.all(function (data) {
-        console.log(data)
         var burgerObject = {
             burgers: data
-        }
-        res.render("index", burgerObject)
-
-    })
-
+        };
+        res.render("index", burgerObject);
+    });
 });
 
-
 router.post("/api/burgers", function (req, res) {
-    console.log(req)
     burger.create([
         "burger_name", "devoured"
     ], [
         req.body.name, req.body.devoured
     ], function (result) {
-        res.json({ id: result.insertId })
+        res.json({ id: result.insertId });
     });
 });
 
 router.put("/api/burgers/:id", function (req, res) {
     var condition = "id = " + parseInt(req.params.id);
-    console.log(typeof (condition))
-    console.log(condition)
     burger.update({
         devoured: 1
     }, condition, function (result) {
@@ -43,10 +36,8 @@ router.put("/api/burgers/:id", function (req, res) {
         } else {
             res.status(200).end();
         }
-    })
-
+    });
 });
-
 
 //create router and export router
 module.exports = router;

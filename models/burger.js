@@ -1,5 +1,5 @@
 //import orm.js
-var orm = require("../config/orm.js")
+var orm = require("../config/orm.js");
 
 var burger = {
     all: function (cb) {
@@ -13,7 +13,6 @@ var burger = {
         });
     },
     update: function (objColVals, condition, cb) {
-        console.log("model" + condition)
         orm.updateOne("burgers", objColVals, condition, function (res) {
             cb(res);
         });
@@ -23,7 +22,7 @@ var burger = {
             cb(res);
         });
     }
-}
+};
 
 //export burger.js
-module.exports = burger
+module.exports = burger;
