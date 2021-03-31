@@ -67,12 +67,23 @@ var orm = {
         })
     },
 
-    updateOne: function () { },
+    updateOne: function (table, objColVals, condition, cb) {
+        console.log(condition)
+        var queryString = "UPDATE " + table;
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
+            cb(result);
+        })
+
+    },
 }
-
-
-
-
 
 // * Export the ORM object in `module.exports`.
 module.exports = orm;

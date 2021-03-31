@@ -21,3 +21,22 @@ $(".create-form").on("submit", function (event) {
         }
     );
 });
+
+$(".change-devour").on("click", function (event) {
+    var id = $(this).data("id");
+
+    var nowDevoured = {
+        devoured: 1
+    };
+
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+        type: "PUT",
+        data: nowDevoured
+    }).then(
+        function () {
+            // Reload the page to get the updated list
+            location.reload();
+        }
+    );
+});
