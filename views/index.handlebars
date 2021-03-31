@@ -14,17 +14,17 @@
     {{/each}}
 </ul> --}}
 
-<div class="row">
+<div class="row justify-content-center">
 
-    <div class="col">
+    <div class="col-4">
         <table class="table-bordered table-striped">
             {{#each burgers}}
             {{#unless devoured}}
             <tr>
                 <td>
-                    {{id}}. {{burger_name}} ({{devoured}})
+                    {{id}}. {{burger_name}}
                     <button class="change-devour" data-id="{{id}}">
-                        EAT
+                        Devour it!
                     </button>
                 </td>
             </tr>
@@ -33,13 +33,13 @@
         </table>
     </div>
 
-    <div class="col">
+    <div class="col-4">
         <table class="table-bordered table-striped">
             {{#each burgers}}
             {{#if devoured}}
             <tr>
                 <td>
-                    {{id}}. {{burger_name}} ({{devoured}})
+                    {{id}}. {{burger_name}}
                 </td>
             </tr>
             {{/if}}
