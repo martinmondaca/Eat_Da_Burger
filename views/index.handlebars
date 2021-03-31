@@ -14,8 +14,52 @@
     {{/each}}
 </ul> --}}
 
-<ul>
-    {{#each burgers}}
-    <li>{{burger_name}}</li>
-    {{/each}}
-</ul>
+<div class="row">
+
+    <div class="col">
+        <table class="table-bordered table-striped">
+            {{#each burgers}}
+            {{#unless devoured}}
+            <tr>
+                <td>
+                    {{id}}. {{burger_name}} ({{devoured}})
+                    <button class="change-devour" data-id="{{id}}">
+                        EAT
+                    </button>
+                </td>
+            </tr>
+            {{/unless}}
+            {{/each}}
+        </table>
+    </div>
+
+    <div class="col">
+        <table class="table-bordered table-striped">
+            {{#each burgers}}
+            {{#if devoured}}
+            <tr>
+                <td>
+                    {{id}}. {{burger_name}} ({{devoured}})
+                </td>
+            </tr>
+            {{/if}}
+            {{/each}}
+        </table>
+    </div>
+
+</div>
+
+<br>
+<div class="row justify-content-center">
+    <form class="create-form">
+
+        <div class="form-group">
+            <label for="ca"></label>
+            <input type="text" id="ca" name="name">
+        </div>
+        <div class="text-center">
+            <button type="submit">Add Burger</button>
+        </div>
+    </form>
+</div>
+<p class="text-center">Enter a burger you want to eat. Click the 'Add Burger' button.</p>
