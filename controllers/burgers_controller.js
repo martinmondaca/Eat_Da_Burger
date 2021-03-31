@@ -18,19 +18,21 @@ router.get("/", function (req, res) {
 
 });
 
-router.post("/api/burger", function (req, res) {
+
+router.post("/api/burgers", function (req, res) {
+    console.log(req)
     burger.create([
         "burger_name", "devoured"
     ], [
-        req.body.name, false
-    ], function (res) {
-        res.json({ id: res.insertId })
-    })
+        req.body.name, req.body.devoured
+    ], function (result) {
+        res.json({ id: result.insertId })
+    });
 });
 
-router.put("api.burger/:id", function (req, res) {
-    burger.updateOne
-});
+// router.put("api.burger/:id", function (req, res) {
+//     burger.updateOne
+// });
 
 
 //create router and export router
