@@ -45,7 +45,7 @@
   1. Click the 'Devout it!' button next to the burger you would like to eat. The burger will then move to the right.
 
   ## Images
-
+  ### Application Image
   ![Screenshot of app](public/assets/img/eatdaburger.png)
 
   ## Questions  
